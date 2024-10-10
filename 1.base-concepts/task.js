@@ -20,5 +20,10 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-
+	let monthlyPercent = (percent / 100) / 12;  // Преобразуем процент из диапазона 0-100 в диапазон 0-1 и в ежемесячную ставку
+	let loanBody = amount - contribution; // тeло кредита
+	let payment = loanBody * (monthlyPercent + (monthlyPercent / (((1 + monthlyPercent) ** countMonths) - 1)));
+	let totalAmount = payment * countMonths;
+	totalAmount = totalAmount.toFixed(2);
+	return Number(totalAmount);
 }
